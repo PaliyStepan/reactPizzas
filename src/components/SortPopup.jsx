@@ -1,32 +1,30 @@
 import React, {useEffect, useRef, useState} from "react";
 
-
-function SortPopup({items}) {
+const SortPopup = React.memo(function SortPopup({activeSortType,items, onClickSortType}) {
 
     const [visiblePopup, setVisiblePopup] = useState(false);
-    const [activeItem, setActiveItem] = useState(0);
     const sortRef = useRef();
-    const activeLabel = items[activeItem];
+    const activeLabel = items.find(obj => obj.type === activeSortType).name;
 
     const toggleVisiblePopup = ()=>{
         setVisiblePopup(!visiblePopup)
     };
 
     const handleOutsideClick = (e) =>{
-        if (!e.path.includes(sortRef.current)){
+        const path = e.path || (e.composedPath && e.composedPath());
+        if (!path.includes(sortRef.current)){
             setVisiblePopup(false)
         }
     };
 
     const onSelectItem = (index) => {
-        setActiveItem(index);
+        onClickSortType(index);
         setVisiblePopup(false)
     };
 
 
     useEffect(()=>{
         document.body.addEventListener('click', handleOutsideClick);
-        // console.log(sortRef.current);
     },[]);
 
     return(
@@ -54,11 +52,11 @@ function SortPopup({items}) {
                         {items &&
                         items.map((item, index)=>(
                             <li
-                                className={activeItem === index ? 'active' : ''}
-                                key={`${item}_${index}`}
-                                onClick={()=>onSelectItem(index)}
+                                className={activeSortType === index ? 'active' : ''}
+                                key={`${item.type}_${index}`}
+                                onClick={()=>onSelectItem(item)}
                             >
-                                {item}
+                                {item.name}
                             </li>
                         ))}
                     </ul>
@@ -67,6 +65,8 @@ function SortPopup({items}) {
 
         </div>
     )
-}
+});
+
+
 
 export default SortPopup;
