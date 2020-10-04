@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import Button from "../Button";
+import StarRatings from 'react-star-ratings';
 
 
 
@@ -29,6 +30,7 @@ function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza, a
         };
         onClickAddPizza(obj);
     };
+
 
 
     return(
@@ -96,7 +98,12 @@ function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza, a
                 </Button>
             </div>
             <div className="pizza-block__rating">
-                {rating}
+                <StarRatings
+                    rating={rating}
+                    numberOfStars={5}
+                    starRatedColor="orange"
+                    starEmptyColor="#ddd"
+                />
             </div>
         </div>
     )

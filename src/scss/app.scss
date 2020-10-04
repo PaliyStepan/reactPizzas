@@ -320,6 +320,20 @@ body {
   }
 }
 
+.pizza-block__rating {
+  display: flex;
+}
+
+.star-ratings {
+  .star-container {
+    padding: 0 5px 0 0 !important;
+    svg {
+      width: 18px !important;
+      height: auto;
+    }
+  }
+}
+
 
 @media only screen and (max-width: 1366px) {
   .content__top  {
