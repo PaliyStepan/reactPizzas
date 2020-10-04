@@ -3,7 +3,7 @@ import {SET_CATEGORY, SET_SORT_BY} from "../action/types";
 const initialState = {
     category: null,
     sortBy: {
-        type: 'popular',
+        type: 'rating',
         order: 'desc'
     }
 };

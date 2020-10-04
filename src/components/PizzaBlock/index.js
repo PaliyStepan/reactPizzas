@@ -5,7 +5,7 @@ import Button from "../Button";
 
 
 
-function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza, addedCount}) {
+function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza, addedCount, rating}) {
     const availableTypes = ['тонкое', 'традиционное'];
     const availableSizes = [26,30,40];
     const [activeType, setActiveType] = useState(types[0]);
@@ -94,6 +94,9 @@ function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza, a
                     { addedCount && <i>{addedCount}</i>}
 
                 </Button>
+            </div>
+            <div className="pizza-block__rating">
+                {rating}
             </div>
         </div>
     )

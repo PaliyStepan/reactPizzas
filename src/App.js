@@ -8,7 +8,6 @@ function App() {
         <div className="wrapper">
             <Header/>
             <div className="content">
-                {/*<Route path="/" render={()=> <Home items={items}/>} exact/>*/}
                 <Route path="/" component={Home} exact/>
                 <Route path="/cart" component={Cart} exact/>
             </div>
